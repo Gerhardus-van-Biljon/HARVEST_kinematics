@@ -17,9 +17,9 @@ def dh_transform(theta, d, a, alpha):
 def forward_kinematics(d1, theta2, theta3, theta4, theta5, theta6,
                         d2, d3, a4, a5, a6, return_all=False):
 
-    A1 = dh_transform(0,      d1, 0,  -np.pi / 2)
-    A2 = dh_transform(theta2, d2, 0,   np.pi / 2)
-    A3 = dh_transform(theta3, d3, 0,   0)
+    A1 = dh_transform(0,      d1, 0,  0)
+    A2 = dh_transform(theta2, d2, 0,   -np.pi / 2)
+    A3 = dh_transform(theta3, d3, 0,   0)           
     A4 = dh_transform(theta4, 0,  a4,  0)
     A5 = dh_transform(theta5, 0,  a5, -np.pi / 2)
     A6 = dh_transform(theta6, 0,  a6,  0)

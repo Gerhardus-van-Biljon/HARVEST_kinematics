@@ -31,12 +31,12 @@ t2, t3, t4, t5, t6 = 0, 0, 0, 0, 0
 
 #  dh table parameters [theta, d, a, alpha]
 dh_table = [
-    [ 0, d1,  0, -90],  # joint 1
-    [t2, d2,  0,  90],  # joint 2
-    [t3, d3,  0,   0],  # joint 3
+    [ 0, d1,  0, 0],  # joint 1
+    [t2, d2,  0,  -90],  # joint 2
+    [t3, d3,  0,   90],  # joint 3
     [t4,  0, a4,   0],  # joint 4
-    [t5,  0, a5, -90],  # joint 5
-    [t6,  0, a6,   0]   # joint 6
+    [t5,  0, a5, 0],  # joint 5
+    [t6,  0, a6,   -90]   # joint 6
 ]
 
 #  chain multiply and print the blocks

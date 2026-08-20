@@ -24,12 +24,12 @@ pi_2 = sp.pi / 2
 
 # dh table parameters: [theta, d, a, alpha]
 dh_table = [
-    [ 0, d1,  0, -pi_2], # a_1
-    [t2, d2,  0,  pi_2], # a_2
-    [t3, d3,  0,     0], # a_3
-    [t4,  0, a4,     0], # a_4
-    [t5,  0, a5, -pi_2], # a_5
-    [t6,  0, a6,     0]  # a_6
+    [ 0, d1,  0,    0], # a_1
+    [t2, d2,  0,  -pi_2], # a_2
+    [t3, d3,  0,    pi_2], # a_ 3
+    [t4,  0, a4,    0], # a_4
+    [t5,  0, a5,    0], # a_5
+    [t6,  0, a6,    -pi_2]  # a_6
 ]
 
 # chain multiply and print the full 4x4 matrices

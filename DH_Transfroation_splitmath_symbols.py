@@ -23,12 +23,12 @@ pi_2 = sp.pi / 2
 
 #  dh table parameters: [theta, d, a, alpha]
 dh_table = [
-    [ 0, d1,  0, -pi_2], # joint 1
-    [t2, d2,  0,  pi_2], # joint 2
-    [t3, d3,  0,     0], # joint 3
+    [ 0, d1,  0, 0], # joint 1
+    [t2, d2,  0,  -pi_2], # joint 2
+    [t3, d3,  0,     pi_2], # joint 3
     [t4,  0, a4,     0], # joint 4
-    [t5,  0, a5, -pi_2], # joint 5
-    [t6,  0, a6,     0]  # joint 6
+    [t5,  0, a5, 0], # joint 5
+    [t6,  0, a6,     -pi_2]  # joint 6
 ]
 
 # chain multiply and print the blocks
