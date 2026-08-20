@@ -71,8 +71,8 @@ def print_pose(label, T):
 
 
 if __name__ == "__main__":
-    d2 = 0.10   # base -> waist offset
-    d3 = 0.20   # waist -> shoulder offset
+    d2 = 0.10   # base waist offset
+    d3 = 0.20   # waist shoulder offset
     a4 = 0.25   # elbow link 1 length
     a5 = 0.20   # elbow link 2 length
     a6 = 0.10   # wrist/drill offset
@@ -81,8 +81,8 @@ if __name__ == "__main__":
     d1 = 0.05                     # prismatic slide, meters
     theta2 = np.radians(0)        # waist spin
     theta3 = np.radians(30)       # elbow 1
-    theta4 = np.radians(-45)      # elbow 2
-    theta5 = np.radians(20)       # elbow 3
+    theta4 = np.radians(-45)      # elbow2
+    theta5 = np.radians(20)       # elbow
     theta6 = np.radians(0)        # drill spin
 
     result = forward_kinematics(
