@@ -1,7 +1,7 @@
 import sympy as sp
 
 def dh_matrix_symbolic(theta, d, a, alpha):
-    """Calculates the transformation matrix for a single joint using symbolic math."""
+    """calculates the transformation matrix for a single joint using symbolic math."""
     ct = sp.cos(theta)
     st = sp.sin(theta)
     ca = sp.cos(alpha)
@@ -14,7 +14,7 @@ def dh_matrix_symbolic(theta, d, a, alpha):
         [ 0,      0,      0,    1]
     ])
 
-#  Define symbolic variables
+#  define symbolic variabls
 t2, t3, t4, t5, t6 = sp.symbols('theta_2 theta_3 theta_4 theta_5 theta_6')
 d1, d2, d3 = sp.symbols('d_1 d_2 d_3')
 a4, a5, a6 = sp.symbols('a_4 a_5 a_6')
@@ -22,33 +22,33 @@ a4, a5, a6 = sp.symbols('a_4 a_5 a_6')
 
 pi_2 = sp.pi / 2
 
-# DH Table parameters: [theta, d, a, alpha]
+# dh table parameters: [theta, d, a, alpha]
 dh_table = [
-    [ 0, d1,  0, -pi_2], # A_1
-    [t2, d2,  0,  pi_2], # A_2
-    [t3, d3,  0,     0], # A_3
-    [t4,  0, a4,     0], # A_4
-    [t5,  0, a5, -pi_2], # A_5
-    [t6,  0, a6,     0]  # A_6
+    [ 0, d1,  0, -pi_2], # a_1
+    [t2, d2,  0,  pi_2], # a_2
+    [t3, d3,  0,     0], # a_3
+    [t4,  0, a4,     0], # a_4
+    [t5,  0, a5, -pi_2], # a_5
+    [t6,  0, a6,     0]  # a_6
 ]
 
-# Chain multiply and print the full 4x4 matrices
-T = sp.eye(4) # Start with 4x4 identity matrix
+# chain multiply and print the full 4x4 matrices
+T = sp.eye(4) # start with 4x4 identity matrix
 
 print(" SYMBOLIC FORWARD KINEMATICS ")
 
 for i, params in enumerate(dh_table):
     theta, d, a, alpha = params
     
-    # Calculate current joint matrix A_i
+    # calculate current joint matrix a_i
     A_i = dh_matrix_symbolic(theta, d, a, alpha)
     
-    # Chain multiply: T_0,i = T_0,i-1 * A_i
+    # chain multiply: t_0,i = t_0,i-1 * a_i
     T = T * A_i
     
-    # Tell sympy to simplify the algebra
+    # tell sympi to simplify the algebra
     T = sp.simplify(T)
     
-    # Print the full 4x4 transformation matrix
+    # print the full 4x4 transfrmation matrix
     print(f"\n Frame {i+1} (T_0,{i+1}) ")
     sp.pprint(T)

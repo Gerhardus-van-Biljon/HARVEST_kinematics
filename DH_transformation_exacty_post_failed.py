@@ -1,4 +1,4 @@
-#failed - useless code for project
+#failed - useles code for project
 import numpy as np
 
 
@@ -51,7 +51,7 @@ def rotation_to_rpy(R):
 
     pitch = np.arcsin(-R[2, 0])
     if np.isclose(np.cos(pitch), 0):
-        # Gimbal lock case
+        # gimbel lock case
         roll = 0
         yaw = np.arctan2(-R[0, 1], R[1, 1])
     else:
@@ -81,7 +81,7 @@ if __name__ == "__main__":
     d1 = 0.05                     # prismatic slide, meters
     theta2 = np.radians(0)        # waist spin
     theta3 = np.radians(30)       # elbow 1
-    theta4 = np.radians(-45)      # elbow2
+    theta4 = np.radians(-45)      # elbw2
     theta5 = np.radians(20)       # elbow
     theta6 = np.radians(0)        # drill spin
 

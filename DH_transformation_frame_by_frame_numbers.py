@@ -1,8 +1,8 @@
 import numpy as np
 
 def dh_matrix(theta, d, a, alpha):
-    """Calculates the 4x4 transformation matrix for a single joint."""
-    # Convert degrees to radians for numpy trig functions
+    """calculates the 4x4 transformation matrix for a single joint."""
+    # convert degrees to radians for numpy trig funcitons
     theta_rad = np.deg2rad(theta)
     alpha_rad = np.deg2rad(alpha)
     
@@ -19,7 +19,7 @@ def dh_matrix(theta, d, a, alpha):
         [ 0,      0,      0,    1]
     ])
 
-# test numbers
+# test numbrs
 d1 = 0.05
 d2 = 0.10
 d3 = 0.15
@@ -27,33 +27,33 @@ a4 = 0.20
 a5 = 0.25
 a6 = 0.05
 
-# Define the current joint angles in degrees 
+# define the current joint angles in degrees 
 t2, t3, t4, t5, t6 = 0, 0, 0, 0, 0
 
-#DH Table parameters: [theta, d, a, alpha] in degrees
+#dh table parameters: [theta, d, a, alpha] in degrees
 dh_table = [
-    [ 0, d1,  0, -90],  # Joint 1
-    [t2, d2,  0,  90],  # Joint 2
-    [t3, d3,  0,   0],  # Joint 3
-    [t4,  0, a4,   0],  # Joint 4
-    [t5,  0, a5, -90],  # Joint 5
-    [t6,  0, a6,   0]   # Joint 6
+    [ 0, d1,  0, -90],  # joint 1
+    [t2, d2,  0,  90],  # joint 2
+    [t3, d3,  0,   0],  # joint 3
+    [t4,  0, a4,   0],  # joint 4
+    [t5,  0, a5, -90],  # joint 5
+    [t6,  0, a6,   0]   # joint 6
 ]
 
-#Chain multiply and print the full 4x4 matrices
-T = np.eye(4) # Start with 4x4 identity matrix
+#chain multply and print the full 4x4 matrices
+T = np.eye(4) # start with 4x4 identity matrix
 
 print(" NUMERICAL FORWARD KINEMATICS ")
 
 for i, params in enumerate(dh_table):
     theta, d, a, alpha = params
     
-    # Calculate current joint matrix A_i
+    # calculate current joint matrix a_i
     A_i = dh_matrix(theta, d, a, alpha)
     
-    # Chain multiply: T_0,i = T_0,i-1 * A_i
+    # chain multiply: t_0,i = t_0,i-1 * a_i
     T = np.dot(T, A_i)
     
-    # Print the full 4x4 transformation matrix
+    # print the full 4x4 transformation matrix
     print(f"\nFrame {i+1} (T_0,{i+1}) ")
     print(np.array_str(T, suppress_small=True, precision=3))
