@@ -30,7 +30,7 @@ a6 = 0.05
 t2, t3, t4, t5, t6 = 0, 0, 0, 0, 0
 
 #  DH Table parameters [theta, d, a, alpha]
-d_table = [
+dh_table = [
     [ 0, d1,  0, -90],  # Joint 1
     [t2, d2,  0,  90],  # Joint 2
     [t3, d3,  0,   0],  # Joint 3
@@ -42,7 +42,7 @@ d_table = [
 #  Chain multiply and print the blocks
 T = np.eye(4) # Start with identity matrix
 
-print("--- FORWARD KINEMATICS: STEP-BY-STEP VERIFICATION ---")
+print(" FORWARD KINEMATICS: STEP-BY-STEP VERIFICATION ")
 
 for i, params in enumerate(dh_table):
     theta, d, a, alpha = params

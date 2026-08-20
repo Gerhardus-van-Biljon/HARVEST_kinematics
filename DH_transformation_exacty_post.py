@@ -1,4 +1,4 @@
-
+#failed - useless code for project
 import numpy as np
 
 
@@ -39,21 +39,16 @@ def forward_kinematics(d1, theta2, theta3, theta4, theta5, theta6,
     return T0_6
 
 
-def extract_position(T):
-
+def extract_position(T):    
     return T[:3, 3]
 
 
 def extract_orientation(T):
-    """Return the 3x3 rotation matrix from a 4x4 homogeneous transform."""
     return T[:3, :3]
 
 
 def rotation_to_rpy(R):
-    """
-    Convert a 3x3 rotation matrix to roll-pitch-yaw (Euler XYZ, degrees).
-    Useful if you want end-effector orientation in a more human-readable form.
-    """
+
     pitch = np.arcsin(-R[2, 0])
     if np.isclose(np.cos(pitch), 0):
         # Gimbal lock case
