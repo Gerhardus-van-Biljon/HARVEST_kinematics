@@ -1,0 +1,64 @@
+import numpy as np
+
+def dh_matrix(theta, d, a, alpha):
+    """Calculates the transformation matrix for a single joint using DH parameters."""
+    # Convert degrees to radians for numpy trig functions
+    theta_rad = np.deg2rad(theta)
+    alpha_rad = np.deg2rad(alpha)
+    
+    ct = np.round(np.cos(theta_rad), 5)
+    st = np.round(np.sin(theta_rad), 5)
+    ca = np.round(np.cos(alpha_rad), 5)
+    sa = np.round(np.sin(alpha_rad), 5)
+    
+    return np.array([
+        [ct, -st*ca,  st*sa, a*ct],
+        [st,  ct*ca, -ct*sa, a*st],
+        [ 0,     sa,     ca,    d],
+        [ 0,      0,      0,    1]
+    ])
+
+# link distances examples 
+d1 = 0.05
+d2 = 0.10
+d3 = 0.15
+a4 = 0.20
+a5 = 0.25
+a6 = 0.05
+
+# joint angles examples
+t2, t3, t4, t5, t6 = 0, 0, 0, 0, 0
+
+#  DH Table parameters [theta, d, a, alpha]
+d_table = [
+    [ 0, d1,  0, -90],  # Joint 1
+    [t2, d2,  0,  90],  # Joint 2
+    [t3, d3,  0,   0],  # Joint 3
+    [t4,  0, a4,   0],  # Joint 4
+    [t5,  0, a5, -90],  # Joint 5
+    [t6,  0, a6,   0]   # Joint 6
+]
+
+#  Chain multiply and print the blocks
+T = np.eye(4) # Start with identity matrix
+
+print("--- FORWARD KINEMATICS: STEP-BY-STEP VERIFICATION ---")
+
+for i, params in enumerate(dh_table):
+    theta, d, a, alpha = params
+    
+    # Calculate current joint matrix A_i
+    A_i = dh_matrix(theta, d, a, alpha)
+    
+    # Chain multiply: T_0,i = T_0,i-1 * A_i
+    T = np.dot(T, A_i)
+    
+    # Extract Rotation (top-left 3x3) and Position (top-right 3x1)
+    R = T[0:3, 0:3]
+    P = T[0:3, 3]
+    
+    print(f"\nFrame {i+1} (T_0,{i+1}):")
+    print("Rotation Matrix (R):")
+    print(np.array_str(R, suppress_small=True, precision=3))
+    print("Position Vector (p):")
+    print(np.array_str(P, suppress_small=True, precision=3))
